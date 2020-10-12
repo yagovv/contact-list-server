@@ -2,7 +2,6 @@ const express = require('express');
 const ContactModel = require('./ContactModel');
 const router = express.Router();
 
-//api for get data from database
 router
   .route('/')
   .get(async (_req, res) => {
@@ -45,7 +44,6 @@ router
     }
   });
 
-//api for Insert data from database
 router.post('/savedata', function (req, res) {
   const mod = new ContactModel(req.body);
   mod.save(function (err, data) {
