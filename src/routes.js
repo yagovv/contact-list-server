@@ -44,15 +44,4 @@ router
     }
   });
 
-router.post('/savedata', function (req, res) {
-  const mod = new ContactModel(req.body);
-  mod.save(function (err, data) {
-    if (err) {
-      res.send(err);
-    } else {
-      res.send({ data: 'Record has been Inserted..!!' });
-    }
-  });
-});
-
 module.exports = router;
