@@ -16,29 +16,29 @@ router
     try {
       const newContact = new ContactModel(req.body);
       await newContact.save();
-      return res.status(200);
+      return res.status(200).send({ id: newContact.id });
     } catch (error) {
       return res.status(403).send({ error });
     }
   })
   .put(async (req, res) => {
     try {
-      const { firstname, lastname, email, phone, id } = req.body;
+      const { firstName, lastName, email, phone, id } = req.body;
       await ContactModel.findByIdAndUpdate(id, {
-        firstname,
-        lastname,
+        firstName,
+        lastName,
         phone,
         email,
       });
-      return res.status(200);
+      return res.status(200).send();
     } catch (error) {
       return res.status(403).send({ error });
     }
   })
   .delete(async (req, res) => {
     try {
-      await ContactModel.remove({ _id: req.body.id });
-      return res.status(200);
+      await ContactModel.findByIdAndDelete(req.body.id);
+      return res.status(200).send();
     } catch (error) {
       return res.status(403).send({ error });
     }
